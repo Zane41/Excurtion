@@ -1,6 +1,8 @@
 package excurtion.excurtion;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -11,16 +13,22 @@ public class HelloController {
     @FXML
    static   Label otvet;
 
-
+@FXML
+Button checkButton;
 
     @FXML
-  static   TextField vvodKolva;
+   static TextField vvodKolva;
     @FXML
    static TextField vvodVysoty;
 
-    @FXML
-    protected void checkButton() {
-        otvet.setText(check(vvodVisot(Bus.vvodKolva())));
-        otvet.setVisible(true);
+
+    public void initialize() {
+
+        checkButton.setOnAction(x->{
+                otvet.setText(check(vvodVisot(Bus.vvodKolva())));
+                otvet.setVisible(true);
+            }
+        );
+
     }
 }
