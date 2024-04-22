@@ -2,33 +2,44 @@ package excurtion.excurtion;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBase;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import static excurtion.excurtion.Bus.check;
-import static excurtion.excurtion.Bus.vvodVisot;
+
 
 public class HelloController {
     @FXML
-   static   Label otvet;
-
-@FXML
-Button checkButton;
+    Label otvet;
 
     @FXML
-   static TextField vvodKolva;
-    @FXML
-   static TextField vvodVysoty;
+    Button checkButton;
 
+    @FXML
+    TextField vvodKolva;
+
+    @FXML
+    TextField vvodVysoty;
+
+    protected int [] getHeights(){
+    int kolvo = Integer.parseInt(vvodKolva.getText());
+    String visoty = vvodVysoty.getText();
+    String [] visotyArr = visoty.split(" ");
+    int [] heights = new int[kolvo];
+    for (int i = 0; i < visotyArr.length; i++)
+        heights[i] = Integer.parseInt(visotyArr[i]);
+    return heights;
+}
 
     public void initialize() {
 
-        checkButton.setOnAction(x->{
-                otvet.setText(check(vvodVisot(Bus.vvodKolva())));
-                otvet.setVisible(true);
-            }
-        );
 
-    }
+
+        checkButton.setOnAction(_ ->{
+                    otvet.setText(check(getHeights()));
+                    otvet.setVisible(true);
+                }
+        );
+}
 }
